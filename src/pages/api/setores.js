@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const { perfil_setor,capacidade_setor } = req.body;
 
-  // GET - Listar evento
+  // GET - Listar setor
   if (req.method === "GET") {
     try {
       const setores = await prisma.setores.findMany();
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     }
   }
 
-  // POST - Criar evento
+  // POST - Criar setor
   if (req.method === "POST") {
     // Validação
     if (!perfil_setor || !capacidade_setor) {
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Erro ao deletar setor" });
     }
   }
-
+  //PUT - Atualizar setor
   if (req.method === "PUT") {
     try {
       const { id_setor,perfil_setor,capacidade_setor } = req.body;
@@ -99,3 +99,4 @@ export default async function handler(req, res) {
   
   return res.status(405).json({ error: "Método não permitido" });
 }
+
