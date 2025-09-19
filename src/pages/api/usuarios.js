@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         where: { email },
       });
 
-      if (usuarioExistente) {
+      if (!usuarioExistente) {
         return res.status(400).json({ error: "E-mail já cadastrado" });
       }
 
@@ -119,3 +119,4 @@ export default async function handler(req, res) {
   // Se o método for diferente 
   return res.status(405).json({ error: "Método não permitido" });
 }
+
